@@ -7,9 +7,13 @@ By writing terraform code, create an AWS ECR repository for pushing the Challeng
 - Docker image from Challenge 2 created in docker registry.
 
 ## Instructions
-1. Create AWS ECR respotiory with `terraform init && terraform apply -target module.ecr`
-2. Push docker image from Challenge 2. Execute `./push-image.sh {"myapp-repository-URL" output from previous step}`
+1. Create AWS ECR repository with `terraform init && terraform apply -target module.ecr`.
+2. Push docker image from Challenge 2 to AWS ECR repository. Execute `./push-image.sh`.
+
+    By default, this script pushes the local docker image "devops/test:latest" to remote image "{AWS ECR repository created in previous step}:1".
+    
     > If error is encountered, please install and configure [amazon-ecr-credential-helper](https://github.com/awslabs/amazon-ecr-credential-helper), then rerun this step.
+
 3. Create AWS ECS cluster with `terraform apply`
 4. Test API from Internet. Execute `curl {"test_endpoint" output from previous step}`. A **pong** response is expected.
 

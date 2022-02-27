@@ -6,18 +6,19 @@ fi
 
 region="ap-southeast-1"
 
-repourl=${1}
+remote_tag=${1}
+source_tag=${2:-devops/test:latest}
 
-if [ "${repourl}" == "" ]; then
-  repourl=$(terraform output | grep repository | sed 's#.*"\(.*\)"#\1#')
+if [ "${remote_tag}" == "" ]; then
+  remote_tag=$(terraform output | grep repository | sed 's#.*"\(.*\)"#\1:1#')
 fi
-echo "repo url: ${repourl}"
+echo "remote_tag: ${remote_tag}"
 
-echo "** tagging devops/test:latest as ${repourl}:1"
-echo "> docker tag devops/test:latest ${repourl}:1"
-docker tag devops/test:latest ${repourl}:1
+echo "** tagging ${source_tag} as ${remote_tag}"
+echo "> docker tag ${source_tag} ${remote_tag}"
+docker tag ${source_tag} ${remote_tag}
 
-myaccount=$(echo $repourl | sed 's#\(.*\)/.*#\1#')
+myaccount=$(echo ${remote_tag} | sed 's#\(.*\)/.*#\1#')
 echo "** myaccount: $myaccount"
 
 # auto login to ECR
@@ -28,8 +29,8 @@ else
   echo "** using helper"
 fi
 
-echo "> docker push ${repourl}:1"
-docker push ${repourl}:1
+echo "> docker push ${remote_tag}"
+docker push ${remote_tag}
 
 if [ $? -eq 1 ]; then
     echo "!! error encountered"
