@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build --no-cache -t devops/test:latest . 
+docker buildx build --platform linux/amd64 --no-cache -t devops/test:latest . 
