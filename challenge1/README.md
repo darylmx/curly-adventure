@@ -29,7 +29,7 @@ Based on their priorities and internal discussions, they have provided you with 
 - MariaDB SQL database is used as the managed database. It is configured to be highly available on the 2 Availability Zones.
 - An Elastic Load Balancer (ELB) is used to divert traffic to healthy instances. ELB health checks are in place to ensure that only instances that respond at layer 7 receive traffic. Cross-Zone load balancing is enabled to improve application availability and resiliency.
 - An autoscaling group is in place with a target tracking policy. Average CPU utilization of the Auto Scaling group is the current target. Minimum and maximum scaled instances can be set accordingly.
-- The hosted webapp is a sample CRUD application found at [vue-js-node-js-express-mysql] (https://github.com/bezkoder/vue-js-node-js-express-mysql). Its initialization is prepared as a template file in the launch configuration that is utilized by the AutoScaling group.
+- The hosted webapp is a sample CRUD application found at [vue-js-node-js-express-mysql](https://github.com/bezkoder/vue-js-node-js-express-mysql). Its initialization is prepared as a template file in the launch configuration that is utilized by the AutoScaling group.
 
 ## Instructions
 1. Deploy the system with `terraform init && terraform apply`.
