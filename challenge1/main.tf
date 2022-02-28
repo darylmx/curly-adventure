@@ -43,11 +43,14 @@ module "asg" {
   min_size           = 2
   max_size           = 4
 
+  # Webapp customization settings
   template_file_path = "${path.module}/templates/init_webapp.tpl"
   template_file_data = {
     ELB_HOSTNAME = module.lb.dns_name
     DB_HOSTNAME  = module.db.db_address
+    DB_NAME      = var.db_name
     DB_PASSWORD  = var.db_password
+    DB_USERNAME  = var.db_username
   }
 }
 

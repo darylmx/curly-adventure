@@ -9,6 +9,8 @@ sudo git clone https://github.com/bezkoder/vue-js-node-js-express-mysql.git
 cd vue-js-node-js-express-mysql
 
 sudo sed -i 's#localhost#${DB_HOSTNAME}#' app/config/db.config.js
+sudo sed -i 's#testdb#${DB_NAME}#' app/config/db.config.js
+sudo sed -i 's#root#${DB_USERNAME}#' app/config/db.config.js
 sudo sed -i 's#123456#${DB_PASSWORD}#' app/config/db.config.js
 
 sudo sed -i 's#http://localhost:8081#\*#' server.js
