@@ -1,7 +1,7 @@
 [
   {
     "name": "${APP_NAME}",
-    "image": "${REPOSITORY_URL}:1",
+    "image": "${REPOSITORY_URL}:${TAG}",
     "cpu": ${CONTAINER_CPU},
     "memory": ${CONTAINER_MEMORY},
     "networkMode": "awsvpc",
